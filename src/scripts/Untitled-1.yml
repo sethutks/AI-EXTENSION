@@ -1,0 +1,30 @@
+
+
+1) Download the zip (ai-extensions.zip) and extract
+    - ignore MacOS content
+    - You will see the assets, panel.html etc
+
+2) Open the chrome browser, type this on the URL >>>  chrome://extensions/
+
+3) Enable the developer mode (top right corner)
+
+4) Click on "Load unpacked" button
+
+5) Select the folder where you extracted the zip file (ai-extensions)
+
+6) You will see the extension
+
+7) Click on the extension icon (top right corner of the browser) and pin
+
+8) Click on the extension icon again and you will see the panel open up
+    - You can also use the extension to generate code
+
+Note: If you see failed to activate, reopen the browser extension
+
+Feature 1: When you like to change / add a model
+
+- go to popup.js
+- line 104
+
+Feature 2: When you like to change the browser engine
+
