@@ -505,6 +505,9 @@ class ChatUI {
         if (language === 'java' && engine === 'playwright') {
             return 'PLAYWRIGHT_JAVA_PAGE_ONLY';
         }
+        if (language === 'typescript' && engine === 'playwright') {
+            return 'PLAYWRIGHT_TYPESCRIPT_PAGE_ONLY';
+        }
 
         return 'CUCUMBER_ONLY';
     }

@@ -56,6 +56,67 @@ export const DEFAULT_PROMPTS = {
   \`\`\`
  `,
  /**
+  * Prompt for generating Playwright TypeScript Page class ONLY
+  * (No test class).
+  */
+ PLAYWRIGHT_TYPESCRIPT_PAGE_ONLY: `
+ Context:
+ Given the following DOM structure:
+ \\\`html
+ \${domContent}
+ \\\`
+ 
+ Instructions:
+ Generate Playwright Typescript PAGE OBJECT CLASS for that DOM.
+ 
+ 1. Use recommended Playwright locator strategies in priority:
+    - Prefer getByRole(), getByText(), getByLabel() for accessibility
+    - Use getByTestId() for test IDs
+    - Fall back to CSS/XPath only when necessary
+    - Always use strict locators (first()/last()/nth() when needed)
+    - Use locator.filter() for complex conditions
+ 
+ 2. Implementation guidelines:
+    - Use Playwright latest always
+    - DO NOT USE: Hardcoded sleep
+ 
+ 3. Code structure:
+    - Generate a Single page class Only
+    - Provide only the code block, no other text or instructions
+ 
+ Example:
+ \\\`typescript
+ import { test, expect } from '@playwright/test';
+
+test('Interact with Chennai text element', async ({ page }) => {
+  // Navigate to the target page (replace with actual URL)
+  await page.goto('https://example.com');
+
+  // Locate the element with class "placeHolderMainText" containing text "Chennai"
+  const chennaiText = page.locator('text=Chennai').filter({ has: page.locator('.placeHolderMainText') });
+
+  // Wait for the element to be visible (with timeout of 5 seconds)
+  await chennaiText.waitFor({ state: 'visible', timeout: 5000 })
+    .catch(error => console.error('Element not found:', error));
+
+  // Verify the element contains expected text
+  await expect(chennaiText).toHaveText('Chennai');
+
+  // Example interactions (uncomment what you need):
+  
+  // 1. Click on the element
+  // await chennaiText.click();
+  
+  // 2. Get the text content
+  // const textContent = await chennaiText.textContent();
+  // console.log('Text content:', textContent);
+  
+  // 3. Hover over the element
+  // await chennaiText.hover();
+});
+ \\\`
+`,
+ /**
   * Prompt for generating Selenium Java Page class ONLY
   * (No test class).
   */
@@ -263,5 +324,6 @@ export const CODE_GENERATOR_TYPES = {
   PLAYWRIGHT_JAVA_PAGE_ONLY: 'Playwright-Java-Page-Only',
   SELENIUM_JAVA_PAGE_ONLY: 'Selenium-Java-Page-Only',
   SELENIUM_JAVA_TEST_ONLY: 'Selenium-Java-Test-Only',
-  CUCUMBER_ONLY: 'Cucumber-Only'
+  CUCUMBER_ONLY: 'Cucumber-Only',
+  PLAYWRIGHT_TYPESCRIPT_PAGE_ONLY: 'Playwright-Typescript-Page-Only'
 };
